@@ -1,0 +1,26 @@
+{
+  "id": "LP_ABC_001",
+  "name": "Personal Loan - ABC Finance",
+  "type": "FIXED_TERM_LOAN",
+  "state": "ACTIVE",
+  "forBranchKey": "REPLACE_WITH_BRANCH_ENCODED_KEY",
+  "currency": {
+    "code": "INR"
+  },
+  "loanAmountSettings": {
+    "minAmount": { "value": 10000 },
+    "maxAmount": { "value": 1000000 },
+    "defaultAmount": { "value": 100000 }
+  },
+  "interestSettings": {
+    "defaultInterestRate": { "value": 14.5 },
+    "interestCalculationMethod": "DECLINING_BALANCE",
+    "interestChargeFrequency": "ANNUALIZED"
+  },
+  "scheduleSettings": {
+    "defaultRepaymentPeriodCount": 12,
+    "defaultRepaymentPeriodUnit": "MONTHS",
+    "repaymentScheduleMethod": "STANDARD"
+  }
+}
+

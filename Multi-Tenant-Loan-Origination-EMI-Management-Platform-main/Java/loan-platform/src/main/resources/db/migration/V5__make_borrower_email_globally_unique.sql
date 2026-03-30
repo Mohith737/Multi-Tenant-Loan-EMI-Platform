@@ -1,0 +1,4 @@
+DROP INDEX IF EXISTS uk_borrowers_tenant_email;
+
+CREATE UNIQUE INDEX IF NOT EXISTS uk_borrowers_email ON borrowers (email);
+CREATE INDEX IF NOT EXISTS idx_borrowers_tenant_email ON borrowers (tenant_id, email);

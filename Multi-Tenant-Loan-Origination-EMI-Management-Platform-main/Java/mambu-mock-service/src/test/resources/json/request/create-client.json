@@ -1,0 +1,33 @@
+{
+  "firstName": "Rahul",
+  "lastName": "Sharma",
+  "emailAddress": "rahul.sharma@email.com",
+  "mobilePhone": "+919876543210",
+  "birthDate": "1990-05-15",
+  "gender": "MALE",
+  "state": "ACTIVE",
+  "assignedBranchKey": "REPLACE_WITH_BRANCH_ENCODED_KEY",
+  "idDocuments": [
+    {
+      "documentType": "PAN",
+      "documentId": "ABCDE1234F",
+      "issuingAuthority": "Income Tax Department of India"
+    },
+    {
+      "documentType": "NATIONAL_ID",
+      "documentId": "XXXX-XXXX-1234",
+      "issuingAuthority": "UIDAI"
+    }
+  ],
+  "addresses": [
+    {
+      "line1": "123 MG Road",
+      "city": "Bengaluru",
+      "region": "Karnataka",
+      "postcode": "560001",
+      "country": "IN",
+      "indexInList": 0
+    }
+  ]
+}
+

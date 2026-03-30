@@ -1,0 +1,9 @@
+{
+  "creditScore": 700,
+  "creditBureau": "EXPERIAN",
+  "monthlyIncome": 80000,
+  "existingEmiObligations": 36000,
+  "employmentType": "SALARIED",
+  "employerName": "Acme Corp",
+  "employmentMonths": 30
+}

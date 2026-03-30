@@ -1,0 +1,14 @@
+{
+  "id": "branch_abc_001",
+  "name": "ABC Finance - Main Branch",
+  "state": "ACTIVE",
+  "emailAddress": "admin@abcfinance.com",
+  "phoneNumber": "+919876543210",
+  "address": {
+    "country": "IN",
+    "city": "Bengaluru",
+    "line1": "123 MG Road"
+  },
+  "notes": "Primary branch for ABC Finance Ltd tenant"
+}
+

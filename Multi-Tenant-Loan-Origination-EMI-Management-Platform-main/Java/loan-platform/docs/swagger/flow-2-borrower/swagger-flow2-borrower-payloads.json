@@ -1,0 +1,163 @@
+{
+  "metadata": {
+    "flow": "Flow 2 - Borrower Registration, KYC, Credit Profile",
+    "baseUrl": "http://localhost:8080",
+    "swaggerUi": "http://localhost:8080/swagger-ui.html"
+  },
+  "placeholders": {
+    "tenantId": "550e8400-e29b-41d4-a716-446655440000",
+    "kycDocumentId": "8c8c4dd4-9dd1-4afe-90d0-1ce84a52658f",
+    "tenantAdminJwt": "<TENANT_ADMIN_JWT>",
+    "borrowerJwt": "<BORROWER_JWT>"
+  },
+  "sequence": [
+    "1) GET /api/v1/tenants/public",
+    "2) POST /api/v1/auth/register",
+    "2b) POST /api/v1/auth/login (existing borrower)",
+    "3) POST /api/v1/auth/login (tenant admin)",
+    "4) POST /api/v1/kyc/submit (borrower)",
+    "5) PUT /api/v1/admin/kyc/{kycDocumentId}/verify (tenant admin)",
+    "6) POST /api/v1/credit-profile (borrower)",
+    "7) GET /api/v1/borrowers/me/sync-status (borrower)"
+  ],
+  "payloads": {
+    "authLoginTenantAdmin": {
+      "username": "tenant_admin",
+      "password": "tenant_admin_password",
+      "tenantId": "{tenantId}"
+    },
+    "registerBorrowerValid": {
+      "firstName": "Rahul",
+      "lastName": "Sharma",
+      "email": "rahul.sharma@example.com",
+      "password": "S3cureP@ss",
+      "mobile": "+919876543210",
+      "dateOfBirth": "1990-05-15",
+      "gender": "MALE",
+      "panNumber": "ABCDE1234F",
+      "aadhaarNumber": "987654321234",
+      "tenantId": "{tenantId}",
+      "address": {
+        "line1": "123 MG Road",
+        "city": "Bengaluru",
+        "state": "Karnataka",
+        "pincode": "560001"
+      }
+    },
+    "registerBorrowerInvalidTenant": {
+      "firstName": "Rahul",
+      "lastName": "Sharma",
+      "email": "rahul.invalid.tenant@example.com",
+      "password": "S3cureP@ss",
+      "mobile": "+919876543210",
+      "dateOfBirth": "1990-05-15",
+      "gender": "MALE",
+      "panNumber": "ABCDE1234F",
+      "aadhaarNumber": "987654321234",
+      "tenantId": "11111111-1111-1111-1111-111111111111",
+      "address": {
+        "line1": "123 MG Road",
+        "city": "Bengaluru",
+        "state": "Karnataka",
+        "pincode": "560001"
+      }
+    },
+    "registerBorrowerUnderage": {
+      "firstName": "Teen",
+      "lastName": "User",
+      "email": "teen.user@example.com",
+      "password": "S3cureP@ss",
+      "mobile": "+919876543210",
+      "dateOfBirth": "2010-01-01",
+      "gender": "MALE",
+      "panNumber": "ABCDE1234F",
+      "aadhaarNumber": "987654321234",
+      "tenantId": "{tenantId}",
+      "address": {
+        "line1": "123 MG Road",
+        "city": "Bengaluru",
+        "state": "Karnataka",
+        "pincode": "560001"
+      }
+    },
+    "authLoginBorrowerExisting": {
+      "username": "rahul.sharma@example.com",
+      "password": "S3cureP@ss"
+    },
+    "kycSubmitValidPanAndAadhaar": {
+      "documents": [
+        {
+          "documentType": "PAN_CARD",
+          "documentNumber": "ABCDE1234F",
+          "documentReference": "s3://kyc-docs/borrower-id/pan.pdf"
+        },
+        {
+          "documentType": "AADHAAR",
+          "documentNumber": "XXXXXXXX1234",
+          "documentReference": "s3://kyc-docs/borrower-id/aadhaar.pdf"
+        }
+      ]
+    },
+    "kycSubmitValidPanAndAddressProof": {
+      "documents": [
+        {
+          "documentType": "PAN_CARD",
+          "documentNumber": "ABCDE1234F",
+          "documentReference": "s3://kyc-docs/borrower-id/pan.pdf"
+        },
+        {
+          "documentType": "ADDRESS_PROOF",
+          "documentNumber": "ADDR-998877",
+          "documentReference": "s3://kyc-docs/borrower-id/address-proof.pdf"
+        }
+      ]
+    },
+    "kycSubmitMissingPan": {
+      "documents": [
+        {
+          "documentType": "AADHAAR",
+          "documentNumber": "XXXXXXXX1234",
+          "documentReference": "s3://kyc-docs/borrower-id/aadhaar.pdf"
+        }
+      ]
+    },
+    "adminKycVerifyApproved": {
+      "decision": "VERIFIED"
+    },
+    "adminKycVerifyRejected": {
+      "decision": "REJECTED",
+      "rejectionReason": "Document mismatch"
+    },
+    "creditProfilePrime": {
+      "creditScore": 780,
+      "creditBureau": "CIBIL",
+      "monthlyIncome": 120000,
+      "existingEmiObligations": 25000,
+      "employmentType": "SALARIED",
+      "employerName": "Acme Corp",
+      "employmentMonths": 60
+    },
+    "creditProfileNearPrime": {
+      "creditScore": 700,
+      "creditBureau": "EXPERIAN",
+      "monthlyIncome": 80000,
+      "existingEmiObligations": 36000,
+      "employmentType": "SALARIED",
+      "employerName": "Acme Corp",
+      "employmentMonths": 30
+    },
+    "creditProfileSubPrime": {
+      "creditScore": 620,
+      "creditBureau": "EQUIFAX",
+      "monthlyIncome": 50000,
+      "existingEmiObligations": 35000,
+      "employmentType": "SELF_EMPLOYED",
+      "employerName": "Self",
+      "employmentMonths": 18
+    },
+    "borrowerSyncStatusNoBody": {}
+  },
+  "notes": {
+    "borrowerSyncStatus": "Use GET /api/v1/borrowers/me/sync-status with Authorization: Bearer {borrowerJwt}. No request body."
+  }
+}
