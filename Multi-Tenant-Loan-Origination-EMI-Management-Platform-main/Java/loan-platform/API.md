@@ -40,8 +40,8 @@ Login endpoint for tenant-scoped users (`TENANT_ADMIN`, `BORROWER`), and also su
 **Response 200:**
 ```json
 {
-  "tokenType": "Bearer",
-  "accessToken": "<JWT>",
+  "tokenType": "see .env file",
+  "accessToken": "see .env file",
   "expiresInSeconds": 3600,
   "expiresAt": "2026-03-03T10:30:00Z",
   "username": "tenant_admin",
@@ -232,7 +232,7 @@ Returns all `ACTIVE` tenants with loan product comparison data.
 **Response 201:**
 ```json
 {
-  "accessToken": "<BORROWER_JWT>"
+  "accessToken": "see .env file"
 }
 ```
 
@@ -1414,3 +1414,5 @@ All APIs return errors in this format:
 | 429 | Rate limit exceeded |
 | 500 | Internal Server Error |
 | 502 | Mambu/External service error |
+
+

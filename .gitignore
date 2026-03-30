@@ -1,21 +1,27 @@
-# Environment variables
+# Environment variables - NEVER commit these
 .env
 .env.*
 *.env
-!.env.example
+.env.local
+.env.production
 
 # Dependencies
 node_modules/
 __pycache__/
 *.pyc
+venv/
+.venv/
 
 # Build outputs
 dist/
 build/
 .next/
+out/
+target/
 
 # Logs
 *.log
+logs/
 
 # OS files
 .DS_Store
@@ -24,20 +30,13 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
-.env.local
-.env.production
-*.pyo
-venv/
-.venv/
-out/
-target/
-logs/
-*.suo
-*.user
+
 # Secrets
 *.pem
 *.key
 *.p12
 *.pfx
-secrets/
+
+# Allow .env.example to be committed
+!.env.example
 

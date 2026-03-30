@@ -2867,7 +2867,7 @@ curl -i -X POST http://localhost:8080/auth/register \
   -d '{
     "role":"TENANT_ADMIN",
     "email":"hdfc@example.com",
-    "password":"REDACTED_SEE_ENV"
+    "password": "REDACTED_SEE_ENV"
   }'
 ```
 Copy the `jwt`.
@@ -7060,7 +7060,7 @@ Use any 3‑part token where the payload contains `tenantId` and `role`. Example
 HEADER='{"alg":"none","typ":"JWT"}'
 PAYLOAD='{"tenantId":"tenant-001","role":"PLATFORM_ADMIN"}'
 
-TOKEN=$(printf '%s' "$HEADER" | base64 | tr '+/' '-_' | tr -d '=\n').$(printf '%s' "$PAYLOAD" | base64 | tr '+/' '-_' | tr -d '=\n').sig
+TOKEN=see .env file
 echo $TOKEN
 ```
 
@@ -7149,7 +7149,7 @@ http://localhost:8080/swagger-ui/index.html
 ```bash
 HEADER='{"alg":"none","typ":"JWT"}'
 PAYLOAD='{"tenantId":"tenant-001","role":"PLATFORM_ADMIN"}'
-TOKEN=$(printf '%s' "$HEADER" | base64 | tr '+/' '-_' | tr -d '=\n').$(printf '%s' "$PAYLOAD" | base64 | tr '+/' '-_' | tr -d '=\n').sig
+TOKEN=see .env file
 echo $TOKEN
 ```
 Paste in Swagger’s **Authorize** box as:
@@ -10201,3 +10201,5 @@ Never use repository.findById(id) — always findByIdAndTenantId(id, tenantId) w
 **Assistant (2026-03-02T04:20:24.732Z):**
 
 Because this is a multi-tenant system. If you query by `id` alone, a user from Tenant A could fetch or mutate a record that belongs to Tenant B (data leak). Using `findByIdAndTenantId(id, tenantId)` guarantees tenant isolation at the database layer, not just in app logic, and prevents accidental cross-tenant access if IDs overlap or if someone guesses IDs. It’s a core safety rule in multi-tenant apps.
+
+

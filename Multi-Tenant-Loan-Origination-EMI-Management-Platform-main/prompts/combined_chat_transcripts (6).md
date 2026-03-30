@@ -2118,15 +2118,15 @@ Use fresh tokens (old ones may expire):
 BASE_URL=http://localhost:8080   # use 18080 if your stack mapped there
 TENANT_ID=decf9a54-d638-4814-a3aa-a0af07039a86
 
-PLATFORM_TOKEN=$(curl -sS -X POST "$BASE_URL/api/v1/auth/admin/login" \
+PLATFORM_TOKEN=see .env file
   -H 'Content-Type: application/json' \
   -d '{"username":"platform_admin","password":"replace_with_admin_password"}' | jq -r .accessToken)
 
-TENANT_TOKEN=$(curl -sS -X POST "$BASE_URL/api/v1/auth/login" \
+TENANT_TOKEN=see .env file
   -H 'Content-Type: application/json' \
   -d "{\"username\":\"tenant_admin\",\"password\":\"REDACTED_SEE_ENV\",\"tenantId\":\"$TENANT_ID\"}" | jq -r .accessToken)
 
-BORROWER_TOKEN=$(curl -sS -X POST "$BASE_URL/api/v1/auth/login" \
+BORROWER_TOKEN=see .env file
   -H 'Content-Type: application/json' \
   -d "{\"username\":\"flow678.borrower+1772696601@flow678-1772696601.local\",\"password\":\"S3cureP@ssword\",\"tenantId\":\"$TENANT_ID\"}" | jq -r .accessToken)
 ```
@@ -2303,11 +2303,11 @@ BORROWER_EMAIL='flow678.borrower+1772696601@flow678-1772696601.local'
 BORROWER_PASS='S3cureP@ssword'
 
 # 1) Login
-TENANT_TOKEN=$(curl -sS -X POST "$BASE_URL/api/v1/auth/login" \
+TENANT_TOKEN=see .env file
   -H 'Content-Type: application/json' \
   -d "{\"username\":\"$TENANT_ADMIN_USER\",\"password\":\"$TENANT_ADMIN_PASS\",\"tenantId\":\"$TENANT_ID\"}" | jq -r .accessToken)
 
-BORROWER_TOKEN=$(curl -sS -X POST "$BASE_URL/api/v1/auth/login" \
+BORROWER_TOKEN=see .env file
   -H 'Content-Type: application/json' \
   -d "{\"username\":\"$BORROWER_EMAIL\",\"password\":\"$BORROWER_PASS\",\"tenantId\":\"$TENANT_ID\"}" | jq -r .accessToken)
 
@@ -2411,10 +2411,10 @@ TENANT_ID=decf9a54-d638-4814-a3aa-a0af07039a86
 BORROWER_EMAIL='flow678.borrower+1772696601@flow678-1772696601.local'
 BORROWER_PASS='S3cureP@ssword'
 
-TENANT_TOKEN=$(curl -sS -X POST "$BASE_URL/api/v1/auth/login" -H 'Content-Type: application/json' \
+TENANT_TOKEN=see .env file
   -d "{\"username\":\"tenant_admin\",\"password\":\"REDACTED_SEE_ENV\",\"tenantId\":\"$TENANT_ID\"}" | jq -r .accessToken)
 
-BORROWER_TOKEN=$(curl -sS -X POST "$BASE_URL/api/v1/auth/login" -H 'Content-Type: application/json' \
+BORROWER_TOKEN=see .env file
   -d "{\"username\":\"$BORROWER_EMAIL\",\"password\":\"$BORROWER_PASS\",\"tenantId\":\"$TENANT_ID\"}" | jq -r .accessToken)
 
 LP_KEY=$(curl -sS "$BASE_URL/api/v1/loan-products" -H "Authorization: Bearer $TENANT_TOKEN" | jq -r '.[0].productKey // .[0].mambuProductKey // .content[0].productKey')
@@ -4546,9 +4546,9 @@ APP_FLOW5_SCHEDULE_RETRY_MS=300000
 # --------------------------------------------------
 # Stripe (Flow 5 optional / Flow 6 ready)
 # --------------------------------------------------
-APP_STRIPE_ENABLED=true
-APP_STRIPE_API_KEY=REDACTED
-APP_STRIPE_CURRENCY=inr
+APP_STRIPE_ENABLED=see .env file
+APP_STRIPE_API_KEY=see .env file
+APP_STRIPE_CURRENCY=see .env file
 
 # --------------------------------------------------
 # Email Notifications
@@ -4568,7 +4568,7 @@ APP_NOTIFICATION_EMAIL_SMTP_STARTTLS=true
 # --------------------------------------------------
 APP_NOTIFICATION_SMS_ENABLED=true
 APP_NOTIFICATION_SMS_PROVIDER_URL=https://httpbin.org/post
-APP_NOTIFICATION_SMS_API_KEY=REDACTED
+APP_NOTIFICATION_SMS_API_KEY=see .env file
 APP_NOTIFICATION_SMS_SENDER_ID=LOANOS
 APP_NOTIFICATION_SMS_OVERRIDE_TO=+919876543210
  use this env file if anything to fix means related to envs
@@ -4585,8 +4585,8 @@ SPRING_PROFILES_ACTIVE=postgres
 MAMBU_BASE_URL=http://localhost:8081
 
 # avoid real Stripe transfer failures during local disbursement testing
-APP_STRIPE_MOCK_DISBURSEMENT_TRANSFER_ENABLED=true
-APP_STRIPE_MOCK_DESTINATION_PREFIX=acct_mock_
+APP_STRIPE_MOCK_DISBURSEMENT_TRANSFER_ENABLED=see .env file
+APP_STRIPE_MOCK_DESTINATION_PREFIX=see .env file
 ```
 
 Then call disbursement with:
@@ -4775,8 +4775,8 @@ Validation done:
 Now run this on your machine:
 1. Set env (important):
 ```bash
-export APP_STRIPE_MOCK_DISBURSEMENT_TRANSFER_ENABLED=true
-export APP_STRIPE_MOCK_ALLOWED_DESTINATION_ACCOUNTS=acct_1T7TgUI1JWDOn3rF
+export APP_STRIPE_MOCK_DISBURSEMENT_TRANSFER_ENABLED=see .env file
+export APP_STRIPE_MOCK_ALLOWED_DESTINATION_ACCOUNTS=see .env file
 ```
 2. Rebuild/restart:
 ```bash
@@ -4801,8 +4801,8 @@ Yes, put them in your root project `.env` file at:
 Add:
 
 ```env
-APP_STRIPE_MOCK_DISBURSEMENT_TRANSFER_ENABLED=true
-APP_STRIPE_MOCK_ALLOWED_DESTINATION_ACCOUNTS=acct_1T7TgUI1JWDOn3rF
+APP_STRIPE_MOCK_DISBURSEMENT_TRANSFER_ENABLED=see .env file
+APP_STRIPE_MOCK_ALLOWED_DESTINATION_ACCOUNTS=see .env file
 ```
 
 Then from `/home/admin123/Desktop/Project/Java` run:
@@ -4875,8 +4875,8 @@ Why:
 Fix (for your exact account ID):
 1. In root file `/home/admin123/Desktop/Project/Java/.env` add:
 ```env
-APP_STRIPE_MOCK_DISBURSEMENT_TRANSFER_ENABLED=true
-APP_STRIPE_MOCK_ALLOWED_DESTINATION_ACCOUNTS=acct_1T7TgUI1JWDOn3rF
+APP_STRIPE_MOCK_DISBURSEMENT_TRANSFER_ENABLED=see .env file
+APP_STRIPE_MOCK_ALLOWED_DESTINATION_ACCOUNTS=see .env file
 ```
 
 2. Recreate app container so new env is applied:
@@ -4931,10 +4931,10 @@ Then retry your same disbursement API call.
 
 **User (2026-03-05T05:13:47.900Z):**
 
-APP_STRIPE_MOCK_DESTINATION_PREFIX=acct_1T7TgUI1JWDOn3rF
-APP_STRIPE_MOCK_DISBURSEMENT_TRANSFER_ENABLED=true
-APP_STRIPE_MOCK_ALLOWED_DESTINATION_ACCOUNTS=acct_1T7TgUI1JWDOn3rF
-APP_STRIPE_ENABLED=false at the end it retuned like this nce build cimolete?
+APP_STRIPE_MOCK_DESTINATION_PREFIX=see .env file
+APP_STRIPE_MOCK_DISBURSEMENT_TRANSFER_ENABLED=see .env file
+APP_STRIPE_MOCK_ALLOWED_DESTINATION_ACCOUNTS=see .env file
+APP_STRIPE_ENABLED=see .env file
 
 **Assistant (2026-03-05T05:14:04.096Z):**
 
@@ -4962,11 +4962,11 @@ If you want real Stripe sender/receiver entries + borrower email, switch from mo
 
 1. Update `.env` (root `Java/.env`)
 ```env
-APP_STRIPE_ENABLED=true
-APP_STRIPE_API_KEY=REDACTED   # redacted test key
-APP_STRIPE_MOCK_DISBURSEMENT_TRANSFER_ENABLED=false
-APP_STRIPE_MOCK_ALLOWED_DESTINATION_ACCOUNTS=
-APP_STRIPE_MOCK_DESTINATION_PREFIX=acct_mock_
+APP_STRIPE_ENABLED=see .env file
+APP_STRIPE_API_KEY=see .env file
+APP_STRIPE_MOCK_DISBURSEMENT_TRANSFER_ENABLED=see .env file
+APP_STRIPE_MOCK_ALLOWED_DESTINATION_ACCOUNTS=see .env file
+APP_STRIPE_MOCK_DESTINATION_PREFIX=see .env file
 ```
 
 2. Email settings (for real borrower email)
@@ -5142,11 +5142,11 @@ APP_FLOW5_SCHEDULE_RETRY_MS=300000
 # --------------------------------------------------
 # Stripe (Flow 5 optional / Flow 6 ready)
 # --------------------------------------------------
-APP_STRIPE_ENABLED=true
-APP_STRIPE_MOCK_DISBURSEMENT_TRANSFER_ENABLED=true
-APP_STRIPE_MOCK_ALLOWED_DESTINATION_ACCOUNTS=acct_1T7TgUI1JWDOn3rF
-APP_STRIPE_API_KEY=REDACTED
-APP_STRIPE_CURRENCY=inr
+APP_STRIPE_ENABLED=see .env file
+APP_STRIPE_MOCK_DISBURSEMENT_TRANSFER_ENABLED=see .env file
+APP_STRIPE_MOCK_ALLOWED_DESTINATION_ACCOUNTS=see .env file
+APP_STRIPE_API_KEY=see .env file
+APP_STRIPE_CURRENCY=see .env file
 
 # --------------------------------------------------
 # Email Notifications
@@ -5166,7 +5166,7 @@ APP_NOTIFICATION_EMAIL_SMTP_STARTTLS=true
 # --------------------------------------------------
 APP_NOTIFICATION_SMS_ENABLED=true
 APP_NOTIFICATION_SMS_PROVIDER_URL=https://httpbin.org/post
-APP_NOTIFICATION_SMS_API_KEY=REDACTED
+APP_NOTIFICATION_SMS_API_KEY=see .env file
 APP_NOTIFICATION_SMS_SENDER_ID=LOANOS
 APP_NOTIFICATION_SMS_OVERRIDE_TO=+919876543210
  why?
@@ -5187,10 +5187,10 @@ Why it happened:
 To see real Stripe dashboard transfer, set:
 
 ```env
-APP_STRIPE_ENABLED=true
-APP_STRIPE_MOCK_DISBURSEMENT_TRANSFER_ENABLED=false
-APP_STRIPE_MOCK_ALLOWED_DESTINATION_ACCOUNTS=
-APP_STRIPE_MOCK_DESTINATION_PREFIX=acct_mock_
+APP_STRIPE_ENABLED=see .env file
+APP_STRIPE_MOCK_DISBURSEMENT_TRANSFER_ENABLED=see .env file
+APP_STRIPE_MOCK_ALLOWED_DESTINATION_ACCOUNTS=see .env file
+APP_STRIPE_MOCK_DESTINATION_PREFIX=see .env file
 ```
 
 For borrower email (not override inbox), set:
@@ -5215,10 +5215,10 @@ Also: you pasted real Stripe and SMTP secrets here. Rotate them immediately.
 
 **User (2026-03-05T05:27:59.720Z):**
 
-APP_STRIPE_MOCK_DESTINATION_PREFIX=acct_1T7TgUI1JWDOn3rF
-APP_STRIPE_MOCK_DISBURSEMENT_TRANSFER_ENABLED=true
-APP_STRIPE_MOCK_ALLOWED_DESTINATION_ACCOUNTS=acct_1T7TgUI1JWDOn3rF
-APP_STRIPE_ENABLED=false why im getting this after build?
+APP_STRIPE_MOCK_DESTINATION_PREFIX=see .env file
+APP_STRIPE_MOCK_DISBURSEMENT_TRANSFER_ENABLED=see .env file
+APP_STRIPE_MOCK_ALLOWED_DESTINATION_ACCOUNTS=see .env file
+APP_STRIPE_ENABLED=see .env file
 
 **Assistant (2026-03-05T05:28:11.529Z):**
 
@@ -5239,10 +5239,10 @@ Fix:
 1. Put env in **root** `.env` (same folder as `docker-compose.yml`), not `loan-platform/.env`.
 2. For real Stripe dashboard transfers, set:
 ```env
-APP_STRIPE_ENABLED=true
-APP_STRIPE_MOCK_DISBURSEMENT_TRANSFER_ENABLED=false
-APP_STRIPE_MOCK_ALLOWED_DESTINATION_ACCOUNTS=
-APP_STRIPE_MOCK_DESTINATION_PREFIX=acct_mock_
+APP_STRIPE_ENABLED=see .env file
+APP_STRIPE_MOCK_DISBURSEMENT_TRANSFER_ENABLED=see .env file
+APP_STRIPE_MOCK_ALLOWED_DESTINATION_ACCOUNTS=see .env file
+APP_STRIPE_MOCK_DESTINATION_PREFIX=see .env file
 ```
 3. Recreate containers:
 ```bash
@@ -5527,12 +5527,12 @@ Yes, this compose config is correct.
 Now ensure your root `.env` has real Stripe mode values:
 
 ```env
-APP_STRIPE_ENABLED=true
-APP_STRIPE_API_KEY=REDACTED
-APP_STRIPE_CURRENCY=inr
-APP_STRIPE_MOCK_DISBURSEMENT_TRANSFER_ENABLED=false
-APP_STRIPE_MOCK_ALLOWED_DESTINATION_ACCOUNTS=
-APP_STRIPE_MOCK_DESTINATION_PREFIX=acct_mock_
+APP_STRIPE_ENABLED=see .env file
+APP_STRIPE_API_KEY=see .env file
+APP_STRIPE_CURRENCY=see .env file
+APP_STRIPE_MOCK_DISBURSEMENT_TRANSFER_ENABLED=see .env file
+APP_STRIPE_MOCK_ALLOWED_DESTINATION_ACCOUNTS=see .env file
+APP_STRIPE_MOCK_DESTINATION_PREFIX=see .env file
 ```
 
 For real borrower email (not forced override):
@@ -5557,12 +5557,12 @@ After this, disbursement should generate real Stripe `tr_...` transfer (dashboar
 
 **User (2026-03-05T05:32:47.804Z):**
 
-APP_STRIPE_MOCK_DESTINATION_PREFIX=acct_mock_
-APP_STRIPE_MOCK_DISBURSEMENT_TRANSFER_ENABLED=false
-APP_STRIPE_CURRENCY=inr
-APP_STRIPE_API_KEY=REDACTED
-APP_STRIPE_MOCK_ALLOWED_DESTINATION_ACCOUNTS=
-APP_STRIPE_ENABLED=true
+APP_STRIPE_MOCK_DESTINATION_PREFIX=see .env file
+APP_STRIPE_MOCK_DISBURSEMENT_TRANSFER_ENABLED=see .env file
+APP_STRIPE_CURRENCY=see .env file
+APP_STRIPE_API_KEY=see .env file
+APP_STRIPE_MOCK_ALLOWED_DESTINATION_ACCOUNTS=see .env file
+APP_STRIPE_ENABLED=see .env file
 
 **Assistant (2026-03-05T05:32:52.645Z):**
 
@@ -5573,7 +5573,7 @@ This is almost right, but one blocker remains:
 Set it to your actual key in root `.env`:
 
 ```env
-APP_STRIPE_API_KEY=REDACTED
+APP_STRIPE_API_KEY=see .env file
 ```
 
 Then recreate:
@@ -5762,7 +5762,7 @@ curl -X POST 'http://localhost:8080/api/v1/auth/admin/login' \
   -H 'Content-Type: application/json' \
   -d '{
     "username":"platform_admin",
-    "password":"REDACTED_SEE_ENV"
+    "password": "REDACTED_SEE_ENV"
   }'
 ```
 
@@ -5772,7 +5772,7 @@ curl -X POST 'http://localhost:8080/api/v1/auth/login' \
   -H 'Content-Type: application/json' \
   -d '{
     "username":"tenant_admin",
-    "password":"REDACTED_SEE_ENV",
+    "password": "REDACTED_SEE_ENV",
     "tenantId":"ecd35f47-dc10-4cb0-bcc8-248451707de2"
   }'
 ```
@@ -5833,7 +5833,7 @@ curl -sS -X POST 'http://localhost:8080/api/v1/auth/login' \
   -H 'Content-Type: application/json' \
   -d '{
     "username":"tenant_admin",
-    "password":"REDACTED_SEE_ENV",
+    "password": "REDACTED_SEE_ENV",
     "tenantId":"ecd35f47-dc10-4cb0-bcc8-248451707de2"
   }'
 ```
@@ -6950,3 +6950,5 @@ there are some commit i the lastFlow branch push htem to branch safely
 **Assistant (2026-03-05T03:29:03.911Z):**
 
 I’ll verify the repo state first (`current branch`, `clean/dirty status`, `remotes`, and whether `lastFlow` is ahead) so I can push without risking unrelated changes.
+
+

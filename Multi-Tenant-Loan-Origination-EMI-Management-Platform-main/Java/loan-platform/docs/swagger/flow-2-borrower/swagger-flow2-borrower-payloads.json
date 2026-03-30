@@ -161,3 +161,5 @@
     "borrowerSyncStatus": "Use GET /api/v1/borrowers/me/sync-status with Authorization: Bearer {borrowerJwt}. No request body."
   }
 }
+
+

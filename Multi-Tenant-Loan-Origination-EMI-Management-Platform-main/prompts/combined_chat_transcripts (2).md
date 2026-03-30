@@ -729,7 +729,7 @@ Use it like this:
 
 ```bash
 # 1) Borrower login (email + password)
-TOKEN=$(curl -s -X POST 'http://localhost:8080/api/v1/auth/login' \
+TOKEN=see .env file
   -H 'Content-Type: application/json' \
   -d '{"username":"rahul.sharma@example.com","password":"S3cureP@ss"}' | jq -r '.accessToken')
 
@@ -879,7 +879,7 @@ curl -u platform_admin:REDACTED_SEE_ENV \
 
 ```bash
 # Bearer auth
-TOKEN=$(curl -s -X POST http://localhost:8080/api/v1/auth/admin/login \
+TOKEN=see .env file
   -H "Content-Type: application/json" \
   -d '{"username":"platform_admin","password":"REDACTED_SEE_ENV"}' | jq -r .accessToken)
 
@@ -7114,3 +7114,5 @@ Both projects are now **inside the same parent folder**:
 - ` /home/admin123/Downloads/_loan-os-platform/mambu-mock-service ` (new third-party project)
 
 So `mambu-mock-service` is outside `loan-os-platform`, but both are inside `_loan-os-platform` as sibling folders.
+
+
