@@ -4547,7 +4547,7 @@ APP_FLOW5_SCHEDULE_RETRY_MS=300000
 # Stripe (Flow 5 optional / Flow 6 ready)
 # --------------------------------------------------
 APP_STRIPE_ENABLED=true
-APP_STRIPE_API_KEY=STRIPE_TEST_KEY_REDACTED
+APP_STRIPE_API_KEY=REDACTED
 APP_STRIPE_CURRENCY=inr
 
 # --------------------------------------------------
@@ -4568,7 +4568,7 @@ APP_NOTIFICATION_EMAIL_SMTP_STARTTLS=true
 # --------------------------------------------------
 APP_NOTIFICATION_SMS_ENABLED=true
 APP_NOTIFICATION_SMS_PROVIDER_URL=https://httpbin.org/post
-APP_NOTIFICATION_SMS_API_KEY=fake_sms_api_key_for_mock
+APP_NOTIFICATION_SMS_API_KEY=REDACTED
 APP_NOTIFICATION_SMS_SENDER_ID=LOANOS
 APP_NOTIFICATION_SMS_OVERRIDE_TO=+919876543210
  use this env file if anything to fix means related to envs
@@ -4963,7 +4963,7 @@ If you want real Stripe sender/receiver entries + borrower email, switch from mo
 1. Update `.env` (root `Java/.env`)
 ```env
 APP_STRIPE_ENABLED=true
-APP_STRIPE_API_KEY=STRIPE_TEST_KEY_REDACTED   # redacted test key
+APP_STRIPE_API_KEY=REDACTED   # redacted test key
 APP_STRIPE_MOCK_DISBURSEMENT_TRANSFER_ENABLED=false
 APP_STRIPE_MOCK_ALLOWED_DESTINATION_ACCOUNTS=
 APP_STRIPE_MOCK_DESTINATION_PREFIX=acct_mock_
@@ -5145,7 +5145,7 @@ APP_FLOW5_SCHEDULE_RETRY_MS=300000
 APP_STRIPE_ENABLED=true
 APP_STRIPE_MOCK_DISBURSEMENT_TRANSFER_ENABLED=true
 APP_STRIPE_MOCK_ALLOWED_DESTINATION_ACCOUNTS=acct_1T7TgUI1JWDOn3rF
-APP_STRIPE_API_KEY=STRIPE_TEST_KEY_REDACTED
+APP_STRIPE_API_KEY=REDACTED
 APP_STRIPE_CURRENCY=inr
 
 # --------------------------------------------------
@@ -5166,7 +5166,7 @@ APP_NOTIFICATION_EMAIL_SMTP_STARTTLS=true
 # --------------------------------------------------
 APP_NOTIFICATION_SMS_ENABLED=true
 APP_NOTIFICATION_SMS_PROVIDER_URL=https://httpbin.org/post
-APP_NOTIFICATION_SMS_API_KEY=fake_sms_api_key_for_mock
+APP_NOTIFICATION_SMS_API_KEY=REDACTED
 APP_NOTIFICATION_SMS_SENDER_ID=LOANOS
 APP_NOTIFICATION_SMS_OVERRIDE_TO=+919876543210
  why?
@@ -5528,7 +5528,7 @@ Now ensure your root `.env` has real Stripe mode values:
 
 ```env
 APP_STRIPE_ENABLED=true
-APP_STRIPE_API_KEY=sk_test_...
+APP_STRIPE_API_KEY=REDACTED
 APP_STRIPE_CURRENCY=inr
 APP_STRIPE_MOCK_DISBURSEMENT_TRANSFER_ENABLED=false
 APP_STRIPE_MOCK_ALLOWED_DESTINATION_ACCOUNTS=
@@ -5560,7 +5560,7 @@ After this, disbursement should generate real Stripe `tr_...` transfer (dashboar
 APP_STRIPE_MOCK_DESTINATION_PREFIX=acct_mock_
 APP_STRIPE_MOCK_DISBURSEMENT_TRANSFER_ENABLED=false
 APP_STRIPE_CURRENCY=inr
-APP_STRIPE_API_KEY=
+APP_STRIPE_API_KEY=REDACTED
 APP_STRIPE_MOCK_ALLOWED_DESTINATION_ACCOUNTS=
 APP_STRIPE_ENABLED=true
 
@@ -5573,7 +5573,7 @@ This is almost right, but one blocker remains:
 Set it to your actual key in root `.env`:
 
 ```env
-APP_STRIPE_API_KEY=sk_test_...
+APP_STRIPE_API_KEY=REDACTED
 ```
 
 Then recreate:
@@ -6665,7 +6665,7 @@ Use a **real Stripe Connect test account ID** (`acct_...`), not `acct_mock_...`.
 3. Disable mock transfer mode in app:
 - `APP_STRIPE_MOCK_DISBURSEMENT_TRANSFER_ENABLED=false`
 - `APP_STRIPE_ENABLED=true`
-- `APP_STRIPE_API_KEY=sk_test_...`
+- `APP_STRIPE_API_KEY=REDACTED`
 4. Call disbursement with:
 ```json
 {
