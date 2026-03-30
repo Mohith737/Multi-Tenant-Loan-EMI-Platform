@@ -1,0 +1,14 @@
+{
+  "documents": [
+    {
+      "documentType": "PAN_CARD",
+      "documentNumber": "ABCDE1234F",
+      "documentReference": "s3://kyc-docs/borrower-id/pan.pdf"
+    },
+    {
+      "documentType": "AADHAAR",
+      "documentNumber": "XXXXXXXX1234",
+      "documentReference": "s3://kyc-docs/borrower-id/aadhaar.pdf"
+    }
+  ]
+}

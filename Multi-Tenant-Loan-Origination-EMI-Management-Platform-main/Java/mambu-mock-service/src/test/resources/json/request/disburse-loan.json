@@ -1,0 +1,19 @@
+{
+  "notes": "Loan disbursed to borrower registered bank account",
+  "disbursementDate": "2024-02-01",
+  "firstRepaymentDate": "2024-03-01",
+  "externalId": "DISB-loan_001-20240201",
+  "transactionDetails": {
+    "transactionChannelId": "BANK_TRANSFER",
+    "fields": [
+      {
+        "fieldSetId": "transferDetails",
+        "customFieldValues": [
+          { "customField": { "id": "accountNumber" }, "value": "1234567890" },
+          { "customField": { "id": "bankIFSC" },      "value": "SBIN0001234" }
+        ]
+      }
+    ]
+  }
+}
+

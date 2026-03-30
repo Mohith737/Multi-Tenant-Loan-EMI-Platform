@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS tenants (
+    id UUID PRIMARY KEY,
+    name VARCHAR(150) NOT NULL,
+    domain VARCHAR(180) NOT NULL UNIQUE,
+    status VARCHAR(30) NOT NULL,
+    mambu_branch_id VARCHAR(100),
+    mambu_loan_product_id VARCHAR(100),
+    loan_product_name VARCHAR(150),
+    min_loan_amount NUMERIC(19,2),
+    max_loan_amount NUMERIC(19,2),
+    min_tenure_months INTEGER,
+    max_tenure_months INTEGER,
+    annual_interest_rate NUMERIC(10,4),
+    processing_fee_percent NUMERIC(10,4),
+    prepayment_penalty_percent NUMERIC(10,4),
+    loan_currency VARCHAR(10),
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    plan_tier VARCHAR(30) NOT NULL
+);

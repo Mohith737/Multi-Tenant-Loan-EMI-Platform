@@ -1,0 +1,11 @@
+{
+  "amount": 17217.77,
+  "date": "2024-03-01",
+  "notes": "EMI 1 collected via Stripe PaymentIntent pi_3abc123",
+  "externalId": "EMI:loan_001:1:tenant_abc",
+  "transactionDetails": {
+    "transactionChannelId": "ONLINE_PAYMENT",
+    "transactionChannelKey": "8a818e8e00000001"
+  }
+}
+

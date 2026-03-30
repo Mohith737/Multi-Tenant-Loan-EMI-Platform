@@ -1,0 +1,10 @@
+{
+  "loanState": "NON_PERFORMING",
+  "notesArray": [
+    {
+      "notes": "90+ DPD — Automatically flagged as NPA by LoanOS batch job on 2024-05-15",
+      "creationDate": "2024-05-15"
+    }
+  ]
+}
+

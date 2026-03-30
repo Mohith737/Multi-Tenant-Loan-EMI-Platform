@@ -1,0 +1,18 @@
+{
+  "firstName": "Teen",
+  "lastName": "User",
+  "email": "teen.user@example.com",
+  "password": "REDACTED_SEE_ENV",
+  "mobile": "+919876543210",
+  "dateOfBirth": "2010-01-01",
+  "gender": "MALE",
+  "panNumber": "ABCDE1234F",
+  "aadhaarNumber": "987654321234",
+  "tenantId": "550e8400-e29b-41d4-a716-446655440000",
+  "address": {
+    "line1": "123 MG Road",
+    "city": "Bengaluru",
+    "state": "Karnataka",
+    "pincode": "560001"
+  }
+}

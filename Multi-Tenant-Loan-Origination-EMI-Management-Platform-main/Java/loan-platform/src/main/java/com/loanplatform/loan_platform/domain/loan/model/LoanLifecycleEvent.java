@@ -1,0 +1,20 @@
+package com.loanplatform.loan_platform.domain.loan.model;
+
+public enum LoanLifecycleEvent {
+    SUBMIT,
+    SELECT_OFFER,
+    EXPIRE_OFFERS,
+    START_UNDER_VERIFICATION,
+    APPROVE,
+    DISBURSE,
+    ACTIVATE_REPAYMENT,
+    EMI_COLLECTED,
+    EMI_RETRY_EXHAUSTED,
+    FLAG_NON_PERFORMING,
+    ESCALATE_TO_LEGAL,
+    CLEAR_NPA_OVERRIDE,
+    PREPAY_PARTIAL_CONFIRMED,
+    FORECLOSURE_CONFIRMED,
+    GENERATE_NOC,
+    REJECT
+}

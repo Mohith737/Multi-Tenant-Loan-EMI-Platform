@@ -1,0 +1,37 @@
+services:
+  mambu-mock-db:
+    image: postgres:16-alpine
+    container_name: mambu-mock-db
+    environment:
+      POSTGRES_DB: mambu_mock
+      POSTGRES_USER: mambu_mock
+      POSTGRES_PASSWORD: mambu_mock
+    volumes:
+      - mambu_mock_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U mambu_mock -d mambu_mock" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  mambu-mock:
+    build: .
+    container_name: mambu-mock-service
+    ports:
+      - "${MAMBU_HOST_PORT:-8082}:8081"
+    environment:
+      SPRING_PROFILES_ACTIVE: postgres
+      DB_HOST: mambu-mock-db
+      DB_PORT: 5432
+      DB_NAME: mambu_mock
+      DB_USERNAME: mambu_mock
+      DB_PASSWORD: mambu_mock
+      MAMBU_MOCK_SIMULATE_DELAY_MS: 150
+      MAMBU_MOCK_ERROR_RATE_PERCENT: 0
+    depends_on:
+      mambu-mock-db:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  mambu_mock_db_data:

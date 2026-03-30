@@ -1,0 +1,226 @@
+{
+  "metadata": {
+    "baseUrl": "http://localhost:8080",
+    "swaggerUi": "http://localhost:8080/swagger-ui.html",
+    "openApiDoc": "http://localhost:8080/v3/api-docs",
+    "auth": {
+      "platformAdminCredentials": {
+        "username": "platform_admin",
+        "password": "REDACTED_SEE_ENV"
+      },
+      "tenantAdminCredentials": {
+        "username": "tenant_admin",
+        "password": "REDACTED_SEE_ENV"
+      },
+      "borrowerCredentials": {
+        "username": "borrower_user",
+        "password": "REDACTED_SEE_ENV"
+      }
+    }
+  },
+  "placeholders": {
+    "tenantId": "550e8400-e29b-41d4-a716-446655440000",
+    "borrowerId": "b550e840-e29b-41d4-a716-446655440001",
+    "kycDocumentId": "8c8c4dd4-9dd1-4afe-90d0-1ce84a52658f",
+    "tenantAdminJwt": "<TENANT_ADMIN_JWT>",
+    "borrowerJwt": "<BORROWER_JWT>"
+  },
+  "apis": [
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/admin/login",
+      "role": "PUBLIC",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "username": "platform_admin",
+        "password": "REDACTED_SEE_ENV"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "role": "PUBLIC",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "username": "tenant_admin",
+        "password": "REDACTED_SEE_ENV",
+        "tenantId": "{tenantId}"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/tenants",
+      "role": "PLATFORM_ADMIN (JWT from /api/v1/auth/admin/login)",
+      "headers": {
+        "Authorization": "Bearer <ADMIN_JWT>",
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "name": "ABC Finance Ltd",
+        "domain": "abcfinance.com",
+        "adminEmail": "admin@abcfinance.com",
+        "adminPhone": "+919876543210",
+        "planTier": "ENTERPRISE"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/loan-products",
+      "role": "TENANT_ADMIN (JWT from /api/v1/auth/login)",
+      "headers": {
+        "Authorization": "Bearer {tenantAdminJwt}",
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "productName": "Personal Loan - ABC",
+        "minLoanAmount": 10000,
+        "maxLoanAmount": 1000000,
+        "minTenureMonths": 6,
+        "maxTenureMonths": 60,
+        "annualInterestRate": 14.5,
+        "processingFeePercent": 1.5,
+        "prepaymentPenaltyPercent": 2.0,
+        "currency": "INR"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/loan-products",
+      "role": "TENANT_ADMIN (JWT)",
+      "headers": {
+        "Authorization": "Bearer {tenantAdminJwt}"
+      },
+      "body": null
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/tenants/{tenantId}",
+      "role": "PLATFORM_ADMIN (JWT)",
+      "headers": {
+        "Authorization": "Bearer <ADMIN_JWT>"
+      },
+      "body": null
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/tenants/{tenantId}/activate",
+      "role": "PLATFORM_ADMIN (JWT)",
+      "headers": {
+        "Authorization": "Bearer <ADMIN_JWT>"
+      },
+      "body": null
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/tenants/{tenantId}/suspend",
+      "role": "PLATFORM_ADMIN (JWT)",
+      "headers": {
+        "Authorization": "Bearer <ADMIN_JWT>",
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "reason": "Compliance hold for audit"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/borrowers",
+      "role": "TENANT_ADMIN (JWT)",
+      "headers": {
+        "Authorization": "Bearer {tenantAdminJwt}",
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "firstName": "Rahul",
+        "lastName": "Sharma",
+        "dateOfBirth": "1990-05-15",
+        "gender": "MALE",
+        "panNumber": "ABCDE1234F",
+        "aadhaarNumber": "987654321234",
+        "email": "rahul.sharma@email.com",
+        "mobileNumber": "+919876543210",
+        "address": {
+          "line1": "123 MG Road",
+          "city": "Bengaluru",
+          "state": "Karnataka",
+          "pincode": "560001",
+          "country": "IN"
+        },
+        "employmentType": "SALARIED",
+        "employerName": "Infosys Ltd",
+        "monthlyIncome": 75000
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/borrowers/{borrowerId}/kyc",
+      "role": "TENANT_ADMIN or BORROWER (JWT)",
+      "headers": {
+        "Authorization": "Bearer {tenantAdminJwt}",
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "documentType": "AADHAAR",
+        "documentNumber": "987654321234",
+        "documentReference": "s3://kyc-docs/borrower-id/aadhaar.pdf",
+        "issuedDate": "2015-01-01",
+        "expiryDate": "2035-01-01"
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/borrowers/{borrowerId}/kyc/verify",
+      "role": "TENANT_ADMIN (JWT)",
+      "headers": {
+        "Authorization": "Bearer {tenantAdminJwt}",
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "kycDocumentId": "{kycDocumentId}",
+        "decision": "VERIFIED",
+        "remarks": "Document details match borrower information",
+        "verifiedBy": "admin@abcfinance.com",
+        "creditProfile": {
+          "creditScore": 720,
+          "creditBureau": "CIBIL",
+          "monthlyIncome": 75000,
+          "existingEmiObligations": 5000,
+          "employmentType": "SALARIED",
+          "employmentMonths": 36,
+          "reportFetchedAt": "2026-03-03T06:30:00Z"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/borrowers/{borrowerId}/credit-profile",
+      "role": "TENANT_ADMIN (JWT)",
+      "headers": {
+        "Authorization": "Bearer {tenantAdminJwt}",
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "creditScore": 735,
+        "creditBureau": "CIBIL",
+        "monthlyIncome": 90000,
+        "existingEmiObligations": 7000,
+        "employmentType": "SALARIED",
+        "employmentMonths": 48,
+        "reportFetchedAt": "2026-03-03T06:45:00Z"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/borrowers/{borrowerId}",
+      "role": "TENANT_ADMIN or BORROWER (JWT)",
+      "headers": {
+        "Authorization": "Bearer {tenantAdminJwt}"
+      },
+      "body": null
+    }
+  ]
+}

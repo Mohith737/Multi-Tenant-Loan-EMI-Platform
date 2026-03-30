@@ -1,0 +1,9 @@
+{
+  "documents": [
+    {
+      "documentType": "AADHAAR",
+      "documentNumber": "XXXXXXXX1234",
+      "documentReference": "s3://kyc-docs/borrower-id/aadhaar.pdf"
+    }
+  ]
+}

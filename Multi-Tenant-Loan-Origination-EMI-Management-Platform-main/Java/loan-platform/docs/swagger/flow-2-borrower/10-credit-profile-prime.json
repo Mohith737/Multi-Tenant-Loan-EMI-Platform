@@ -1,0 +1,9 @@
+{
+  "creditScore": 780,
+  "creditBureau": "CIBIL",
+  "monthlyIncome": 120000,
+  "existingEmiObligations": 25000,
+  "employmentType": "SALARIED",
+  "employerName": "Acme Corp",
+  "employmentMonths": 60
+}
