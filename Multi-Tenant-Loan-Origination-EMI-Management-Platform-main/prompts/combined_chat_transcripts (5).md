@@ -5528,7 +5528,7 @@ Now ensure your root `.env` has real Stripe mode values:
 
 ```env
 APP_STRIPE_ENABLED=true
-APP_STRIPE_API_KEY=sk_test_...
+APP_STRIPE_API_KEY=REDACTED...
 APP_STRIPE_CURRENCY=inr
 APP_STRIPE_MOCK_DISBURSEMENT_TRANSFER_ENABLED=false
 APP_STRIPE_MOCK_ALLOWED_DESTINATION_ACCOUNTS=
@@ -5573,7 +5573,7 @@ This is almost right, but one blocker remains:
 Set it to your actual key in root `.env`:
 
 ```env
-APP_STRIPE_API_KEY=sk_test_...
+APP_STRIPE_API_KEY=REDACTED...
 ```
 
 Then recreate:
@@ -6665,7 +6665,7 @@ Use a **real Stripe Connect test account ID** (`acct_...`), not `acct_mock_...`.
 3. Disable mock transfer mode in app:
 - `APP_STRIPE_MOCK_DISBURSEMENT_TRANSFER_ENABLED=false`
 - `APP_STRIPE_ENABLED=true`
-- `APP_STRIPE_API_KEY=sk_test_...`
+- `APP_STRIPE_API_KEY=REDACTED...`
 4. Call disbursement with:
 ```json
 {
@@ -6950,3 +6950,4 @@ there are some commit i the lastFlow branch push htem to branch safely
 **Assistant (2026-03-05T03:29:03.911Z):**
 
 I’ll verify the repo state first (`current branch`, `clean/dirty status`, `remotes`, and whether `lastFlow` is ahead) so I can push without risking unrelated changes.
+

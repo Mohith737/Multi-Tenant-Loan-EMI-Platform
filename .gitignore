@@ -24,3 +24,20 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
+.env.local
+.env.production
+*.pyo
+venv/
+.venv/
+out/
+target/
+logs/
+*.suo
+*.user
+# Secrets
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+
